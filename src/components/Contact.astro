@@ -1,0 +1,198 @@
+---
+const currentYear = new Date().getFullYear();
+const navLinks = [
+  { href: "#home", label: "Home" },
+  { href: "#work", label: "Works" },
+  { href: "#about", label: "About" },
+  { href: "#contact", label: "Contact" },
+];
+---
+
+<section id="contact" class="relative flex min-h-screen flex-col overflow-hidden md:h-screen">
+  <!-- Space divider -->
+  <div class="divider-line pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[1px] w-3/4 bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
+  <!-- Nebula glow -->
+  <div class="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-96 w-[600px] rounded-full bg-accent/5 blur-[150px]"></div>
+
+  <!-- Contact form area (grows to fill) -->
+  <div class="relative z-10 flex flex-1 items-center px-4 py-16 sm:px-6 sm:py-0">
+    <div class="mx-auto max-w-4xl w-full">
+      <div class="stagger-card mb-6 text-center sm:mb-8">
+        <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-widest text-accent">Get In Touch</span>
+        <h2 class="mb-3 text-2xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">What can I help you with?</h2>
+        <p class="mx-auto max-w-xl text-sm text-text-secondary sm:text-base">
+          Have a project in mind or want to collaborate? Drop me a message and let's build something great.
+        </p>
+      </div>
+
+      <div class="stagger-card">
+        <form id="contact-form" class="mx-auto max-w-2xl space-y-3 sm:space-y-4 rounded-2xl border border-white/5 bg-surface p-4 sm:p-8">
+          <input type="hidden" name="services" id="services-hidden" value="" />
+          <!-- Service tags -->
+          <div>
+            <label class="mb-2 block text-sm font-medium text-text-secondary">I'm interested in...</label>
+            <div class="flex flex-wrap gap-2" id="service-tags">
+              <button type="button" data-service="Web Development" class="service-tag rounded-full border border-white/10 px-3 py-1.5 text-xs sm:text-sm text-text-secondary transition-all hover:border-accent hover:text-accent">
+                Web Development
+              </button>
+              <button type="button" data-service="Mobile Design" class="service-tag rounded-full border border-white/10 px-3 py-1.5 text-xs sm:text-sm text-text-secondary transition-all hover:border-accent hover:text-accent">
+                Mobile Design
+              </button>
+              <button type="button" data-service="Web Hosting" class="service-tag rounded-full border border-white/10 px-3 py-1.5 text-xs sm:text-sm text-text-secondary transition-all hover:border-accent hover:text-accent">
+                Web Hosting
+              </button>
+              <button type="button" data-service="UX Design" class="service-tag rounded-full border border-white/10 px-3 py-1.5 text-xs sm:text-sm text-text-secondary transition-all hover:border-accent hover:text-accent">
+                UX Design
+              </button>
+              <button type="button" data-service="Consulting" class="service-tag rounded-full border border-white/10 px-3 py-1.5 text-xs sm:text-sm text-text-secondary transition-all hover:border-accent hover:text-accent">
+                Consulting
+              </button>
+            </div>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="name" class="mb-1.5 block text-sm font-medium text-text-secondary">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-text-primary placeholder-text-secondary/50 outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent"
+                placeholder="Your name"
+              />
+            </div>
+            <div>
+              <label for="email" class="mb-1.5 block text-sm font-medium text-text-secondary">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-text-primary placeholder-text-secondary/50 outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent"
+                placeholder="your@email.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="message" class="mb-1.5 block text-sm font-medium text-text-secondary">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="3"
+              class="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-text-primary placeholder-text-secondary/50 outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent"
+              placeholder="Tell me about your project..."
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            id="submit-btn"
+            class="group w-full rounded-xl bg-accent px-8 py-3 font-semibold text-space-900 shadow-lg shadow-accent/25 transition-all duration-300 hover:bg-accent-light hover:shadow-accent/40 hover:-translate-y-0.5"
+          >
+            <span id="btn-text" class="flex items-center justify-center gap-2">
+              Send Message
+              <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+              </svg>
+            </span>
+            <span id="btn-loading" class="hidden flex items-center justify-center gap-2">
+              Sending...
+            </span>
+          </button>
+
+          <div id="form-success" class="hidden rounded-xl border border-green-500/20 bg-green-500/10 p-4 text-center text-sm text-green-400">
+            Message sent! I'll get back to you soon.
+          </div>
+          <div id="form-error" class="hidden rounded-xl border border-red-500/20 bg-red-500/10 p-4 text-center text-sm text-red-400">
+            Something went wrong. Please try again or email me directly.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer (pinned to bottom of this section) -->
+  <footer class="relative z-10 border-t border-white/5 px-6 py-6">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
+      <a href="#home" class="flex items-center gap-2 text-sm font-bold text-text-primary">
+        <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-accent text-space-900 text-xs font-extrabold">
+          EV
+        </span>
+        ericvdub
+      </a>
+      <nav class="flex items-center gap-5">
+        {navLinks.map((link) => (
+          <a href={link.href} class="text-xs text-text-secondary transition-colors hover:text-text-primary">
+            {link.label}
+          </a>
+        ))}
+      </nav>
+      <p class="text-xs text-text-secondary/50">
+        &copy; {currentYear} Eric Vdub
+      </p>
+    </div>
+  </footer>
+</section>
+
+<script>
+  // Service tag toggle
+  const selectedServices = new Set<string>();
+  document.querySelectorAll(".service-tag").forEach((tag) => {
+    tag.addEventListener("click", () => {
+      const service = (tag as HTMLElement).dataset.service!;
+      if (selectedServices.has(service)) {
+        selectedServices.delete(service);
+      } else {
+        selectedServices.add(service);
+      }
+      tag.classList.toggle("bg-accent");
+      tag.classList.toggle("text-space-900");
+      tag.classList.toggle("border-accent");
+      document.getElementById("services-hidden")!.setAttribute("value", [...selectedServices].join(", "));
+    });
+  });
+
+  // Form submission
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const btnText = document.getElementById("btn-text")!;
+    const btnLoading = document.getElementById("btn-loading")!;
+    const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+    const successMsg = document.getElementById("form-success")!;
+    const errorMsg = document.getElementById("form-error")!;
+
+    submitBtn.disabled = true;
+    btnText.classList.add("hidden");
+    btnLoading.classList.remove("hidden");
+    successMsg.classList.add("hidden");
+    errorMsg.classList.add("hidden");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: new FormData(form),
+      });
+
+      if (response.ok) {
+        successMsg.classList.remove("hidden");
+        form.reset();
+        selectedServices.clear();
+        document.querySelectorAll(".service-tag").forEach((tag) => {
+          tag.classList.remove("bg-accent", "text-space-900", "border-accent");
+        });
+      } else {
+        errorMsg.classList.remove("hidden");
+      }
+    } catch {
+      errorMsg.classList.remove("hidden");
+    } finally {
+      submitBtn.disabled = false;
+      btnText.classList.remove("hidden");
+      btnLoading.classList.add("hidden");
+    }
+  });
+</script>
