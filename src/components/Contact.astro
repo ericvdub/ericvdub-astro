@@ -26,7 +26,8 @@ const navLinks = [
       </div>
 
       <div class="stagger-card">
-        <form id="contact-form" class="mx-auto max-w-2xl space-y-3 sm:space-y-4 rounded-2xl border border-white/5 bg-surface p-4 sm:p-8">
+        <form id="contact-form" action="https://submit-form.com/IBVRXbYRn" method="POST" class="mx-auto max-w-2xl space-y-3 sm:space-y-4 rounded-2xl border border-white/5 bg-surface p-4 sm:p-8">
+          <input type="hidden" name="_redirect" value="false" />
           <input type="hidden" name="services" id="services-hidden" value="" />
           <!-- Service tags -->
           <div>
@@ -172,9 +173,10 @@ const navLinks = [
     errorMsg.classList.add("hidden");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://submit-form.com/IBVRXbYRn", {
         method: "POST",
-        body: new FormData(form),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
       });
 
       if (response.ok) {
