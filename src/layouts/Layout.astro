@@ -91,7 +91,7 @@ const { title = "Eric Vdub | Developer & Creator" } = Astro.props;
           if (isAnimating) return;
           const tag = (e.target as HTMLElement).tagName;
           if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
-          if (e.key === " ") {
+          if (e.key === " " || e.code === 'Space') {
             e.preventDefault();
           } else if (e.key === "ArrowDown" || e.key === "PageDown") {
             e.preventDefault();
