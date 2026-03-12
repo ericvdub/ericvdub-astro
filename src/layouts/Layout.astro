@@ -89,6 +89,7 @@ const { title = "Eric Vdub | Developer & Creator" } = Astro.props;
         // ── Keyboard handler (desktop only) ──
         window.addEventListener("keydown", (e) => {
           if (isAnimating) return;
+          console.log("Keypress", e.key, e.code)
           const tag = (e.target as HTMLElement).tagName;
           if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
           if (e.key === " " || e.code === 'Space') {
