@@ -89,6 +89,8 @@ const { title = "Eric Vdub | Developer & Creator" } = Astro.props;
         // ── Keyboard handler (desktop only) ──
         window.addEventListener("keydown", (e) => {
           if (isAnimating) return;
+          const tag = (e.target as HTMLElement).tagName;
+          if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
           if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
             e.preventDefault();
             goToSection(currentIndex + 1);
