@@ -198,6 +198,21 @@ const { title = "Eric Vdub | Developer & Creator" } = Astro.props;
 
         pages.forEach((page) => sectionObserver.observe(page));
       } else {
+        // Handle initial hash from URL (e.g., navigating to /#work from another page)
+        if (window.location.hash) {
+          const hash = window.location.hash.slice(1);
+          const targetIndex = pages.findIndex((p) => p.id === hash);
+          if (targetIndex > 0) {
+            currentIndex = targetIndex;
+            // Reset browser scroll — fullpage uses transforms, not scroll position
+            window.scrollTo(0, 0);
+            wrapper.style.transition = "none";
+            wrapper.style.transform = `translateY(-${currentIndex * 100}vh)`;
+            // Force reflow so the instant position applies before restoring transition
+            wrapper.offsetHeight;
+            wrapper.style.transition = `transform ${DURATION}ms cubic-bezier(0.65, 0, 0.35, 1)`;
+          }
+        }
         triggerAnimations();
         updateNav();
       }

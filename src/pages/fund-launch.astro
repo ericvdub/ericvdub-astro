@@ -1,0 +1,698 @@
+---
+import SimpleLayout from "../layouts/SimpleLayout.astro";
+---
+
+<SimpleLayout
+  title="Fund Launch AI — Fund Builder Prototype | Eric Vdub"
+  description="Interactive UI prototype for Fund Launch AI's Fund Builder — an AI-powered platform that automates private fund formation."
+>
+  <!-- Hero -->
+  <div class="mx-auto max-w-4xl px-6 pt-16 pb-8 lg:pt-24 text-center">
+    <span
+      class="inline-block rounded-full bg-accent/10 border border-accent/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent mb-6"
+    >
+      Design Proposal
+    </span>
+    <h1 class="text-4xl font-bold tracking-tight text-text-primary lg:text-5xl">
+      Fund Launch AI
+    </h1>
+    <p class="mt-2 text-lg text-text-secondary font-medium">
+      AI-Powered Fund Builder &mdash; Interactive Prototype
+    </p>
+    <p class="mt-8 max-w-2xl mx-auto text-sm leading-relaxed text-text-secondary">
+      This prototype demonstrates how the Fund Builder's core form flow could
+      feel&mdash;approachable enough for first-time fund managers, precise enough
+      for institutional LPs, and intelligent enough to guide users through complex
+      legal decisions with contextual AI at every step.
+    </p>
+  </div>
+
+  <!-- Prototype -->
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-2 shadow-2xl sm:p-3">
+      <iframe
+        id="proto-frame"
+        width="100%"
+        height="700"
+        style="border:none;border-radius:10px;background:#f8f9fa;"
+        title="Fund Launch AI Fund Builder Prototype"
+      ></iframe>
+    </div>
+    <p class="mt-4 text-center text-xs text-text-secondary/50">
+      Interactive prototype&mdash;click through tabs, answer questions, and chat with
+      the AI&nbsp;advisor. Best viewed on desktop.
+    </p>
+  </div>
+
+  <!-- Design Decisions -->
+  <div class="mx-auto max-w-4xl px-6 pt-8 pb-20">
+    <h2 class="text-2xl font-bold text-text-primary text-center mb-10">
+      Design Decisions
+    </h2>
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div class="rounded-xl border border-white/5 bg-white/[0.04] p-5">
+        <h3 class="text-sm font-semibold text-text-primary mb-1.5">
+          Folder tabs with floating progress bars
+        </h3>
+        <p class="text-xs leading-relaxed text-text-secondary">
+          Each section's completion is visible as a thin bar above its tab.
+          At-a-glance progress without cluttering the form workspace&mdash;users
+          always know where they stand across all six stages.
+        </p>
+      </div>
+      <div class="rounded-xl border border-white/5 bg-white/[0.04] p-5">
+        <h3 class="text-sm font-semibold text-text-primary mb-1.5">
+          Per-card contextual AI
+        </h3>
+        <p class="text-xs leading-relaxed text-text-secondary">
+          Every question has an "Ask&nbsp;AI" chip that opens an inline chat with
+          context about what the term means, how it affects documents, and
+          suggested follow-ups. Help exactly where decisions happen.
+        </p>
+      </div>
+      <div class="rounded-xl border border-white/5 bg-white/[0.04] p-5">
+        <h3 class="text-sm font-semibold text-text-primary mb-1.5">
+          Answered state with chat history
+        </h3>
+        <p class="text-xs leading-relaxed text-text-secondary">
+          Completed questions collapse to show the answer and a preview of any AI
+          conversation, with a link to reopen. Decisions feel permanent but always
+          revisitable.
+        </p>
+      </div>
+      <div class="rounded-xl border border-white/5 bg-white/[0.04] p-5">
+        <h3 class="text-sm font-semibold text-text-primary mb-1.5">
+          Sequential section unlocking
+        </h3>
+        <p class="text-xs leading-relaxed text-text-secondary">
+          Tabs unlock as prior sections are completed. For a 147-point legal
+          document pipeline, guided sequencing prevents missed dependencies and
+          reduces cognitive load.
+        </p>
+      </div>
+      <div class="rounded-xl border border-white/5 bg-white/[0.04] p-5">
+        <h3 class="text-sm font-semibold text-text-primary mb-1.5">
+          Automatic saves, no save button
+        </h3>
+        <p class="text-xs leading-relaxed text-text-secondary">
+          Selections commit immediately. In a process this long, eliminating save
+          friction keeps momentum and removes the anxiety of losing progress.
+        </p>
+      </div>
+      <div class="rounded-xl border border-white/5 bg-white/[0.04] p-5">
+        <h3 class="text-sm font-semibold text-text-primary mb-1.5">
+          Dual-layer AI: per-card + global advisor
+        </h3>
+        <p class="text-xs leading-relaxed text-text-secondary">
+          The per-card AI is scoped to the current question. The global AI Advisor
+          panel handles fund-level strategy. Two levels of intelligence, each in
+          the right context.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    var cssVars = ':root{--font-sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--color-text-primary:#111827;--color-text-secondary:#6b7280;--color-text-tertiary:#9ca3af;--color-background-primary:#ffffff;--color-background-secondary:#f9fafb;--color-background-tertiary:#f3f4f6;--color-border-primary:#d1d5db;--color-border-secondary:#e5e7eb;--color-border-tertiary:#f3f4f6;--color-border-success:#86efac;--border-radius-lg:12px;--border-radius-md:8px}';
+
+    var proto = String.raw`
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.app{display:flex;height:640px;border-radius:var(--border-radius-lg);overflow:hidden;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-tertiary)}
+
+.sidebar{width:192px;flex-shrink:0;background:var(--color-background-primary);border-right:0.5px solid var(--color-border-tertiary);display:flex;flex-direction:column}
+.sb-logo{padding:14px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:8px}
+.logo-mark{width:24px;height:24px;background:#111827;border-radius:5px;display:flex;align-items:center;justify-content:center;color:#c9a84c;font-size:10px;font-weight:600;flex-shrink:0}
+.sb-section{padding:12px 10px 4px;font-size:10px;color:var(--color-text-tertiary);letter-spacing:0.07em;text-transform:uppercase}
+.nav-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:6px;margin:1px 6px;cursor:pointer;font-size:12.5px;color:var(--color-text-secondary);transition:background 0.12s,color 0.12s;user-select:none}
+.nav-item:hover{background:var(--color-background-secondary);color:var(--color-text-primary)}
+.nav-item.active{background:var(--color-background-secondary);color:var(--color-text-primary);font-weight:500}
+.nav-item svg{opacity:0.45;flex-shrink:0;transition:opacity 0.12s}
+.nav-item:hover svg,.nav-item.active svg{opacity:0.85}
+.nav-badge{margin-left:auto;font-size:10px;padding:1px 6px;border-radius:10px;background:#faeeda;color:#854f0b;border:0.5px solid #fac775;line-height:1.6}
+.sb-spacer{flex:1}
+.sb-user{padding:10px 10px 12px;border-top:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:8px}
+.avatar{width:26px;height:26px;border-radius:50%;background:#e6f1fb;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:#185fa5;flex-shrink:0}
+
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+
+/* TOP BAR */
+.top-bar{padding:0 18px;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);display:flex;align-items:center;gap:14px;flex-shrink:0;height:48px}
+.fund-title{font-size:13px;font-weight:500;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fund-type-badge{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);white-space:nowrap}
+.circle-prog{position:relative;width:36px;height:36px;flex-shrink:0}
+.circle-prog svg{transform:rotate(-90deg)}
+.circle-prog .pct-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;color:var(--color-text-secondary)}
+.ai-global-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:6px;font-size:11.5px;cursor:pointer;border:0.5px solid #85b7eb;background:#e6f1fb;color:#185fa5;transition:background 0.12s;font-family:var(--font-sans);white-space:nowrap}
+.ai-global-btn:hover{background:#d0e6f7}
+.ai-global-btn.active{background:#185fa5;border-color:#185fa5;color:#fff}
+
+/* TABS */
+.tab-region{background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);flex-shrink:0}
+.tab-row{display:flex;padding:10px 16px 0;align-items:flex-end;gap:2px;overflow-x:auto}
+.tab-row::-webkit-scrollbar{display:none}
+.tab-wrap{display:flex;flex-direction:column;align-items:stretch;cursor:pointer;flex-shrink:0}
+.tab-wrap.locked{cursor:not-allowed}
+.prog-track{height:3px;border-radius:2px;margin:0 3px;background:var(--color-border-tertiary);overflow:hidden}
+.prog-fill{height:100%;border-radius:2px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1),background 0.3s}
+.tab{padding:7px 13px;font-size:12px;border-radius:7px 7px 0 0;background:transparent;border:0.5px solid transparent;border-bottom:none;color:var(--color-text-tertiary);white-space:nowrap;margin-top:5px;display:flex;align-items:center;gap:5px;transition:background 0.15s,color 0.15s,border-color 0.15s;user-select:none}
+.tab:hover:not(.tab-locked){background:var(--color-background-primary);color:var(--color-text-secondary)}
+.tab.active{background:var(--color-background-primary);color:var(--color-text-primary);font-weight:500;border-color:var(--color-border-secondary)}
+.tab.tab-locked{opacity:0.4;cursor:not-allowed}
+.tab-done-dot{width:14px;height:14px;border-radius:50%;background:#eaf3de;border:0.5px solid #c0dd97;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* WORKSPACE */
+.workspace{flex:1;display:flex;overflow:hidden;position:relative}
+.form-scroll{flex:1;overflow-y:auto;padding:22px 24px 32px;min-width:0}
+.sec-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px}
+.sec-title{font-size:16px;font-weight:500}
+.sec-meta{font-size:12px;color:var(--color-text-secondary);margin-top:3px}
+.prog-pill{padding:3px 10px;border-radius:20px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);font-size:11px;color:var(--color-text-secondary);flex-shrink:0}
+.prog-pill.done{background:#eaf3de;border-color:#c0dd97;color:#3b6d11}
+
+/* QUESTION CARD */
+.q-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:10px;background:var(--color-background-primary);transition:border-color 0.2s;animation:fadeUp 0.2s ease both;overflow:hidden}
+.q-card.answered{border-color:var(--color-border-success)}
+.q-card:hover{border-color:var(--color-border-secondary)}
+.q-card-main{padding:16px 18px}
+.q-num{font-size:10px;color:var(--color-text-tertiary);margin-bottom:5px;letter-spacing:0.06em;display:flex;align-items:center;justify-content:space-between}
+.q-label{font-size:13.5px;font-weight:500;line-height:1.4;margin-bottom:3px}
+.q-hint{font-size:11.5px;color:var(--color-text-secondary);margin-bottom:12px;line-height:1.5}
+.q-done-badge{display:flex;align-items:center;gap:4px;font-size:10px;color:#3b6d11}
+.q-done-badge svg{flex-shrink:0}
+
+/* CHIPS */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:5px 12px;border-radius:20px;font-size:12px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);cursor:pointer;color:var(--color-text-secondary);transition:all 0.12s;user-select:none}
+.chip:hover{background:var(--color-background-tertiary);border-color:var(--color-border-primary);color:var(--color-text-primary)}
+.chip:active{transform:scale(0.96)}
+.chip.sel{background:#e6f1fb;border-color:#85b7eb;color:#185fa5;font-weight:500}
+.chip.ai-chip{border-style:dashed;border-color:#85b7eb;color:#378add;background:transparent}
+.chip.ai-chip:hover{background:#e6f1fb}
+.chip.ai-chip.open{background:#e6f1fb;border-style:solid;border-color:#85b7eb;color:#185fa5}
+
+/* ANSWERED SUMMARY */
+.answer-summary{padding:10px 18px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;border-top:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary)}
+.ans-val{font-size:12.5px;color:var(--color-text-primary)}
+.ans-ai-peek{font-size:11px;color:var(--color-text-secondary);font-style:italic;margin-top:2px;line-height:1.5;cursor:pointer}
+.ans-ai-peek:hover{color:var(--color-text-primary)}
+.peek-icon{display:inline-flex;align-items:center;gap:3px;color:#378add;font-size:10px;cursor:pointer;font-style:normal;margin-left:6px}
+.peek-icon:hover{color:#185fa5}
+
+/* PER-CARD AI CHAT */
+.card-ai{border-top:0.5px solid #b5d4f4;background:#f3f8fd;animation:expandDown 0.2s ease}
+.card-ai-head{padding:10px 16px 8px;display:flex;align-items:center;gap:6px}
+.card-ai-label{font-size:11px;color:#185fa5;font-weight:500;flex:1}
+.card-ai-close{font-size:14px;color:#378add;cursor:pointer;padding:2px 4px;line-height:1;background:none;border:none;font-family:var(--font-sans)}
+.card-ai-summary{padding:0 16px 10px;font-size:12px;color:#0c447c;line-height:1.6;border-bottom:0.5px solid #b5d4f4}
+.card-ai-msgs{padding:10px 16px;max-height:160px;overflow-y:auto;display:flex;flex-direction:column;gap:8px}
+.cam-ai{background:#fff;border:0.5px solid #b5d4f4;border-radius:4px 10px 10px 10px;padding:8px 10px;font-size:12px;color:#185fa5;line-height:1.6;max-width:90%;animation:fadeUp 0.15s ease}
+.cam-user{background:#e6f1fb;border-radius:10px 4px 10px 10px;padding:8px 10px;font-size:12px;color:#0c447c;line-height:1.6;max-width:90%;align-self:flex-end;animation:fadeUp 0.15s ease}
+.cam-typing{background:#fff;border:0.5px solid #b5d4f4;border-radius:4px 10px 10px 10px;padding:10px 12px;display:flex;gap:4px;align-items:center}
+.tdot{width:4px;height:4px;border-radius:50%;background:#85b7eb;animation:typeBounce 1.2s infinite}
+.tdot:nth-child(2){animation-delay:.2s}
+.tdot:nth-child(3){animation-delay:.4s}
+.card-ai-suggestions{padding:6px 14px 8px;display:flex;flex-wrap:wrap;gap:5px}
+.sug-chip{padding:4px 9px;font-size:11px;border-radius:4px;border:0.5px solid #85b7eb;cursor:pointer;background:#fff;color:#185fa5;transition:background 0.1s;font-family:var(--font-sans)}
+.sug-chip:hover{background:#e6f1fb}
+.card-ai-input{padding:8px 12px;border-top:0.5px solid #b5d4f4;display:flex;gap:6px}
+.cai-inp{flex:1;font-size:12px;padding:6px 10px;border-radius:var(--border-radius-md);border:0.5px solid #85b7eb;background:#fff;color:var(--color-text-primary);outline:none;font-family:var(--font-sans);transition:border-color 0.15s}
+.cai-inp:focus{border-color:#378add}
+.cai-send{padding:6px 10px;border-radius:var(--border-radius-md);border:0.5px solid #85b7eb;background:#e6f1fb;cursor:pointer;font-size:12px;color:#185fa5;font-family:var(--font-sans);transition:background 0.1s}
+.cai-send:hover{background:#d0e6f7}
+
+/* OPEN-ENDED CARD */
+.oe-inp{width:100%;padding:9px 12px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);font-size:12.5px;color:var(--color-text-primary);outline:none;font-family:var(--font-sans);transition:border-color 0.15s;resize:none;line-height:1.6}
+.oe-inp:focus{border-color:var(--color-border-primary)}
+.oe-actions{display:flex;align-items:center;gap:6px;margin-top:8px}
+.oe-confirm{padding:6px 14px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);font-size:12px;cursor:pointer;color:var(--color-text-secondary);font-family:var(--font-sans);transition:background 0.12s}
+.oe-confirm:hover{background:var(--color-background-tertiary)}
+.oe-confirm.primary{border-color:#85b7eb;background:#e6f1fb;color:#185fa5}
+.oe-confirm.primary:hover{background:#d0e6f7}
+
+/* CONTINUE BTN */
+.continue-wrap{margin-top:20px;display:flex;justify-content:flex-end}
+.continue-btn{padding:9px 22px;border-radius:var(--border-radius-md);border:0.5px solid #85b7eb;background:#e6f1fb;font-size:12.5px;cursor:pointer;color:#185fa5;font-weight:500;font-family:var(--font-sans);transition:background 0.12s,transform 0.1s}
+.continue-btn:hover{background:#d0e6f7}
+.continue-btn:active{transform:scale(0.97)}
+.continue-btn:disabled{opacity:0.35;cursor:not-allowed}
+
+/* COMPLETED VIEW */
+.completed-field{display:grid;grid-template-columns:130px 1fr;gap:8px;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.completed-field:last-child{border-bottom:none}
+.cf-label{font-size:12px;color:var(--color-text-secondary)}
+.cf-val{font-size:12px}
+
+/* LOCK */
+.lock-state{border:0.5px dashed var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:52px 24px;text-align:center;animation:fadeUp 0.2s ease}
+.lock-circle{width:38px;height:38px;border-radius:50%;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:15px}
+.lock-sub{font-size:12px;color:var(--color-text-secondary);line-height:1.6;max-width:230px;margin:6px auto 14px}
+.lock-cta{padding:6px 16px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);font-size:12px;cursor:pointer;color:var(--color-text-secondary);font-family:var(--font-sans)}
+
+/* GLOBAL AI PANEL */
+.global-ai{width:0;flex-shrink:0;background:var(--color-background-primary);border-left:0.5px solid transparent;display:flex;flex-direction:column;overflow:hidden;transition:width 0.25s cubic-bezier(0.4,0,0.2,1),border-color 0.25s}
+.global-ai.open{width:252px;border-left-color:var(--color-border-tertiary)}
+.gai-head{padding:13px 13px 10px;border-bottom:0.5px solid var(--color-border-tertiary);flex-shrink:0}
+.gai-title{font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px}
+.gai-dot{width:6px;height:6px;border-radius:50%;background:#378add;flex-shrink:0;animation:pulse 2s infinite}
+.gai-sub{font-size:11px;color:var(--color-text-tertiary);margin-top:2px}
+.gai-msgs{flex:1;overflow-y:auto;padding:10px 12px}
+.gai-msg-ai{background:var(--color-background-secondary);border-radius:4px 10px 10px 10px;padding:8px 10px;font-size:12px;line-height:1.6;color:var(--color-text-secondary);margin-bottom:8px;animation:fadeUp 0.15s ease}
+.gai-msg-user{background:#e6f1fb;border-radius:10px 4px 10px 10px;padding:8px 10px;font-size:12px;color:#0c447c;text-align:right;line-height:1.6;margin-bottom:8px;animation:fadeUp 0.15s ease}
+.gai-typing{background:var(--color-background-secondary);border-radius:4px 10px 10px 10px;padding:10px 14px;display:flex;gap:4px;margin-bottom:8px}
+.gai-quick{padding:8px 12px;border-top:0.5px solid var(--color-border-tertiary);display:flex;flex-wrap:wrap;gap:4px;flex-shrink:0}
+.gai-qchip{padding:4px 8px;font-size:11px;border-radius:4px;border:0.5px solid var(--color-border-secondary);cursor:pointer;background:var(--color-background-secondary);color:var(--color-text-secondary);transition:background 0.1s;font-family:var(--font-sans)}
+.gai-qchip:hover{background:var(--color-background-tertiary)}
+.gai-input-row{padding:8px 10px;border-top:0.5px solid var(--color-border-tertiary);display:flex;gap:6px;flex-shrink:0}
+.gai-inp{flex:1;font-size:12px;padding:7px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-primary);font-family:var(--font-sans);outline:none}
+.gai-inp:focus{border-color:var(--color-border-primary)}
+.gai-send{padding:7px 10px;border-radius:var(--border-radius-md);border:0.5px solid #85b7eb;background:#e6f1fb;cursor:pointer;font-size:13px;color:#185fa5;font-family:var(--font-sans)}
+.gai-send:hover{background:#d0e6f7}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes expandDown{from{opacity:0;max-height:0}to{opacity:1;max-height:600px}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes typeBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-3px)}}
+@keyframes popIn{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+</style>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sb-logo">
+    <div class="logo-mark">FL</div>
+    <div style="font-size:12px;font-weight:500">Fund Launch</div>
+  </div>
+  <div class="sb-section">Workspace</div>
+  <div class="nav-item active" onclick="setNav(this)">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="1.5" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="1.5" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><rect x="1.5" y="9" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="9" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/></svg>
+    My Funds<span class="nav-badge">2</span>
+  </div>
+  <div class="nav-item" onclick="setNav(this)">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4.5h12M2 8h8M2 11.5h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    Fund Builder
+  </div>
+  <div class="nav-item" onclick="setNav(this)">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="6" cy="5" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M1 13c0-2.8 2.2-4 5-4s5 1.2 5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M11 7l1.5 1.5L15 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Investor CRM
+  </div>
+  <div class="nav-item" onclick="setNav(this)">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 13V9m3 4V6m3 7V4m3 9V7m2 6H1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    Analytics
+  </div>
+  <div class="sb-section">Resources</div>
+  <div class="nav-item" onclick="setNav(this)">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 2h5.5L13 5.5V14H4V2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9.5 2v4H13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    Legal Docs
+  </div>
+  <div class="nav-item" onclick="setNav(this)">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="3" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 6.5h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    Black Card
+  </div>
+  <div class="nav-item" onclick="setNav(this)">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2l1.2 3.6H13l-3 2.2 1.1 3.6L8 9.2l-3.1 2.2L6 7.8 3 5.6h3.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+    Community
+  </div>
+  <div class="sb-spacer"></div>
+  <div class="sb-user">
+    <div class="avatar">JK</div>
+    <div><div style="font-size:12px;font-weight:500">Jordan Kim</div><div style="font-size:10px;color:var(--color-text-tertiary)">Black Card</div></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="fund-title">Apex Capital Partners I</div>
+    <span class="fund-type-badge">Venture Capital</span>
+    <div class="circle-prog">
+      <svg width="36" height="36" viewBox="0 0 36 36">
+        <circle cx="18" cy="18" r="14" fill="none" stroke="var(--color-border-tertiary)" stroke-width="3"/>
+        <circle id="circ-fill" cx="18" cy="18" r="14" fill="none" stroke="#378add" stroke-width="3" stroke-dasharray="88" stroke-dashoffset="62" stroke-linecap="round" style="transition:stroke-dashoffset 0.6s cubic-bezier(0.4,0,0.2,1)"/>
+      </svg>
+      <div class="pct-label" id="pct-label">30%</div>
+    </div>
+    <button class="ai-global-btn" id="gai-btn" onclick="toggleGlobalAI()">
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M7 4.5v2.5l1.5 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      AI Advisor
+    </button>
+  </div>
+
+  <!-- TABS -->
+  <div class="tab-region">
+    <div class="tab-row" id="tab-row"></div>
+  </div>
+
+  <!-- WORKSPACE -->
+  <div class="workspace">
+    <div class="form-scroll" id="form-scroll">
+      <div id="form-area"></div>
+    </div>
+    <!-- GLOBAL AI PANEL -->
+    <div class="global-ai" id="global-ai">
+      <div class="gai-head">
+        <div class="gai-title"><div class="gai-dot"></div>AI Advisor</div>
+        <div class="gai-sub">Fund-level guidance</div>
+      </div>
+      <div class="gai-msgs" id="gai-msgs">
+        <div class="gai-msg-ai">Hi Jordan — ask me anything about your fund structure, legal terms, or document requirements.</div>
+      </div>
+      <div class="gai-quick">
+        <div class="gai-qchip" onclick="gaiQuick('What is standard carry?')">Standard carry?</div>
+        <div class="gai-qchip" onclick="gaiQuick('Explain hurdle rate')">Hurdle rate?</div>
+        <div class="gai-qchip" onclick="gaiQuick('What documents will I get?')">Output docs?</div>
+      </div>
+      <div class="gai-input-row">
+        <input class="gai-inp" id="gai-inp" placeholder="Ask anything..." onkeydown="if(event.key==='Enter')sendGAI()"/>
+        <button class="gai-send" onclick="sendGAI()">&#x2191;</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+var currentTab=2, gaiOpen=false;
+var cardAI={};
+var cardAnswers={fee:'',carry:'',hurdle:'',minimum:''};
+var cardHistory={};
+
+var TABS=[
+  {label:'Fund Identity',   prog:100,done:true, locked:false},
+  {label:'Legal Structure', prog:100,done:true, locked:false},
+  {label:'Fund Economics',  prog:0,  done:false,locked:false},
+  {label:'Investor Terms',  prog:0,  done:false,locked:true, need:'Fund Economics'},
+  {label:'Compliance',      prog:0,  done:false,locked:true, need:'Investor Terms'},
+  {label:'Documents',       prog:0,  done:false,locked:true, need:'All stages'},
+];
+
+var CARD_AI_DATA={
+  fee:{
+    summary:'Management fees are charged annually on your committed capital. They fund operations while you deploy. Too high repels LPs; too low may underfund your team.',
+    suggestions:['What do first-time VC funds typically charge?','How does step-down work post-investment?','Will this appear in my PPM?']
+  },
+  carry:{
+    summary:'Carried interest is your profit share — the primary way fund managers get paid for performance. It only activates after LPs get their capital back plus any preferred return.',
+    suggestions:['Why is 20% the standard?','What is a carry waterfall?','How does carry interact with my hurdle rate?']
+  },
+  hurdle:{
+    summary:'The preferred return (hurdle rate) is an annual threshold LPs receive before you earn any carry. It aligns your incentives with investor returns.',
+    suggestions:['Do I need a preferred return?','What is a catch-up clause?','How does 8% compare to other funds?']
+  },
+  minimum:{
+    summary:'Your LP minimum sets the floor for investor commitments and shapes your investor pipeline. Higher minimums mean fewer, larger checks and a different fundraising strategy.',
+    suggestions:['What minimum is typical for VC?','How does minimum affect accreditation?','Can I have tiered minimums?']
+  }
+};
+
+var GAI_ANSWERS={
+  carry:'20% is the market standard — first-time managers rarely deviate. Carry activates only after LPs recover capital plus any preferred return.',
+  hurdle:'An 8% preferred return means LPs earn 8% annually before you take carry. Institutional LPs strongly prefer this structure.',
+  fee:'2% on committed capital during deployment is standard. Most managers step down to 1.5% on invested capital afterward.',
+  docs:'For a Venture Capital fund you\'ll receive: LPA (Limited Partnership Agreement), PPM (Private Placement Memorandum), Subscription Agreement, and Form D filing.',
+  default:'Based on your VC fund structure, focus on getting the 2/20/8 terms right first — these anchor your entire LPA. What specifically can I clarify?'
+};
+
+function getGAI(q){var l=q.toLowerCase();if(l.includes('carry')||l.includes('carried'))return GAI_ANSWERS.carry;if(l.includes('hurdle')||l.includes('preferred'))return GAI_ANSWERS.hurdle;if(l.includes('fee'))return GAI_ANSWERS.fee;if(l.includes('doc')||l.includes('output')||l.includes('get'))return GAI_ANSWERS.docs;return GAI_ANSWERS.default;}
+
+function getCardAI(cid,q){
+  var d=CARD_AI_DATA[cid];if(!d)return'Great question about this topic. The answer will shape your fund documents — I can help clarify any aspect.';
+  var l=q.toLowerCase();
+  if(l.includes('standard')||l.includes('typical'))return'For a first-time VC fund, the 2% management fee and 20% carried interest are industry standards that signal professionalism to institutional LPs.';
+  if(l.includes('step')||l.includes('step-down'))return'A step-down reduces your management fee from committed to invested capital after the investment period ends — typically 3–5 years. This shows alignment with LPs.';
+  if(l.includes('ppm')||l.includes('document'))return'Yes — this term appears prominently in your PPM and LPA. Fund Launch will auto-populate the correct legal language based on what you enter here.';
+  if(l.includes('waterfall'))return'A carry waterfall defines the order of distributions: first LPs get capital back, then preferred return, then GP catch-up (if any), then 80/20 split.';
+  if(l.includes('catch-up'))return'A GP catch-up clause lets you quickly earn carry once LPs hit their hurdle — typically structured as 100% to GP until you\'ve caught up to 20% of total profits.';
+  if(l.includes('tiered'))return'Tiered minimums are possible — some funds offer $100K for individuals and $250K for institutions. This must be clearly stated in your subscription documents.';
+  if(l.includes('accreditation'))return'Your LP minimum doesn\'t directly determine accreditation requirements, but higher minimums ($250K+) naturally filter for sophisticated investors and reduce compliance burden.';
+  return'That\'s a great question about this term. In short: '+d.summary+' Want me to go deeper on any aspect?';
+}
+
+function countAns(){return(cardAnswers.fee?1:0)+(cardAnswers.carry?1:0)+(cardAnswers.hurdle?1:0)+(cardAnswers.minimum?1:0);}
+
+function overallPct(){
+  var done=2;
+  var partial=countAns()/4;
+  return Math.round(((done+partial)/6)*100);
+}
+
+function updateCircle(){
+  var pct=overallPct();
+  var circ=document.getElementById('circ-fill');
+  var lbl=document.getElementById('pct-label');
+  if(!circ)return;
+  var circumference=2*Math.PI*14;
+  circ.setAttribute('stroke-dasharray',circumference.toFixed(1));
+  circ.setAttribute('stroke-dashoffset',(circumference*(1-pct/100)).toFixed(1));
+  if(lbl)lbl.textContent=pct+'%';
+  TABS[2].prog=Math.round((countAns()/4)*100);
+  var pf=document.getElementById('pf2');
+  if(pf){pf.style.width=TABS[2].prog+'%';pf.style.background=TABS[2].prog===100?'#639922':TABS[2].prog>0?'#ba7517':'transparent';}
+}
+
+function buildTabs(){
+  var row=document.getElementById('tab-row');row.innerHTML='';
+  TABS.forEach(function(t,i){
+    var w=document.createElement('div');
+    w.className='tab-wrap'+(t.locked?' locked':'');
+    w.onclick=function(){t.locked?clickLocked(t):switchTab(i);};
+    var pw=Math.max(74,t.label.length*6.5+20);
+    var pc=t.prog===100?'#639922':t.prog>0?'#ba7517':'transparent';
+    var ti='';
+    if(t.done)ti='<div class="tab-done-dot"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#3b6d11" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>';
+    else if(t.locked)ti='<svg width="10" height="10" viewBox="0 0 12 12" fill="none"><rect x="2.5" y="5" width="7" height="5.5" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M4 5V3.5a2 2 0 114 0V5" stroke="currentColor" stroke-width="1.2"/></svg>';
+    w.innerHTML='<div class="prog-track" style="width:'+pw+'px"><div class="prog-fill" id="pf'+i+'" style="width:'+t.prog+'%;background:'+pc+'"></div></div>'
+      +'<div class="tab'+(i===currentTab?' active':'')+(t.locked?' tab-locked':'')+'" id="tab'+i+'">'+ti+t.label+'</div>';
+    row.appendChild(w);
+  });
+}
+
+function switchTab(i){
+  currentTab=i;
+  document.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('active',j===i);});
+  renderContent();
+  document.getElementById('form-scroll').scrollTop=0;
+}
+
+function clickLocked(t){
+  gaiMsg('assistant','This section unlocks after you complete '+t.need+'. You\'re '+countAns()+'/4 done on Fund Economics.');
+  if(!gaiOpen)toggleGlobalAI();
+}
+
+function renderContent(){
+  var area=document.getElementById('form-area');
+  if(currentTab===0||currentTab===1){
+    var f=currentTab===0?[['Fund name','Apex Capital Partners I'],['Fund type','Venture Capital'],['Investment thesis','Early-stage B2B SaaS disrupting legacy enterprise']]:[['Domicile','Delaware (Recommended)'],['GP entity','Apex Capital GP LLC'],['Principals','Jordan Kim, Casey Reeves']];
+    var t=currentTab===0?'Fund Identity':'Legal Structure';
+    var m=currentTab===0?'Name, type, and investment thesis':'Entity, domicile, and GP/LP structure';
+    var h='<div class="sec-header"><div><div class="sec-title">'+t+'</div><div class="sec-meta">'+m+'</div></div><span class="prog-pill done">&#x2713; Complete</span></div>';
+    h+='<div class="q-card answered"><div class="q-card-main">';
+    f.forEach(function(fi){h+='<div class="completed-field"><div class="cf-label">'+fi[0]+'</div><div class="cf-val">'+fi[1]+'</div></div>';});
+    h+='</div></div>';
+    h+='<div class="continue-wrap"><button class="continue-btn" onclick="switchTab('+(currentTab+1)+')">Continue &#x2192;</button></div>';
+    area.innerHTML=h;return;
+  }
+  if(currentTab===2){
+    var n=countAns();
+    var h='<div class="sec-header"><div><div class="sec-title">Fund Economics</div><div class="sec-meta">Management fee, carried interest, hurdle rate, and LP minimum</div></div><span class="prog-pill" id="ppill">'+n+'/4 answered</span></div>';
+    h+=buildMCCard('fee','01','Management fee','Charged annually on committed capital. A key term in your LPA and PPM.',['1.5% annually','2.0% annually','2.5% annually'],0);
+    h+=buildMCCard('carry','02','Carried interest','Your share of profits after LPs receive their preferred return.',['15%','20% (standard)','25%'],1);
+    h+=buildMCCard('hurdle','03','Preferred return (hurdle rate)','LPs earn this annual return before carry activates.',['No preferred return','6% preferred','8% preferred (standard)'],2);
+    h+=buildOECard('minimum','04','Minimum LP investment','Sets your investor pipeline expectations. Typical VC range: $100K–$500K.',3);
+    h+='<div class="continue-wrap"><button class="continue-btn" id="cont-btn" '+(n<4?'disabled':'')+' onclick="switchTab(3)">Continue &#x2192;</button></div>';
+    area.innerHTML=h;
+    restoreCardAI();return;
+  }
+  var ti=TABS[currentTab];
+  area.innerHTML='<div class="lock-state"><div class="lock-circle">&#x1F512;</div><div style="font-size:14px;font-weight:500">'+ti.label+' is locked</div><div class="lock-sub">Complete '+ti.need+' to unlock this section.</div><button class="lock-cta" onclick="switchTab(2)">&#x2190; Back to Fund Economics</button></div>';
+}
+
+function buildMCCard(cid,num,label,hint,opts,delay){
+  var ans=cardAnswers[cid];
+  var isOpen=cardAI[cid];
+  var hist=cardHistory[cid];
+  var d='animation-delay:'+(delay*0.05)+'s';
+
+  if(ans&&!isOpen){
+    var h='<div class="q-card answered" style="'+d+'">';
+    h+='<div class="q-card-main">';
+    h+='<div class="q-num"><span>'+num+'</span><div class="q-done-badge"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#3b6d11" stroke-width="1"/><path d="M3 5l1.5 1.5L7 3.5" stroke="#3b6d11" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg> Answered</div></div>';
+    h+='<div class="q-label">'+label+'</div>';
+    h+='</div>';
+    h+='<div class="answer-summary">';
+    h+='<div><div class="ans-val">'+ans+'</div>';
+    if(hist&&hist.length>0){h+='<div class="ans-ai-peek">'+hist[hist.length-1].text.substring(0,80)+'…<span class="peek-icon" onclick="openCardAI(\''+cid+'\')">&#x25C8; view chat</span></div>';}
+    h+='</div>';
+    h+='<div class="chip ai-chip" onclick="openCardAI(\''+cid+'\')" style="font-size:11px;padding:4px 10px">&#x25C8; AI</div>';
+    h+='</div>';
+    h+='</div>';
+    return h;
+  }
+
+  var h='<div class="q-card'+(ans?' answered':'')+'" style="'+d+'" id="card-'+cid+'">';
+  h+='<div class="q-card-main">';
+  h+='<div class="q-num">'+num+'</div>';
+  h+='<div class="q-label">'+label+'</div>';
+  h+='<div class="q-hint">'+hint+'</div>';
+  h+='<div class="chips">';
+  opts.forEach(function(o){h+='<div class="chip'+(ans===o?' sel':'')+'" onclick="pickMC(\''+cid+'\',\''+o+'\')">'+o+'</div>';});
+  h+='<div class="chip ai-chip'+(isOpen?' open':'')+'" onclick="toggleCardAI(\''+cid+'\')" id="aichip-'+cid+'">&#x25C8; Ask AI</div>';
+  h+='</div></div>';
+  if(isOpen){h+=buildCardAIPanel(cid);}
+  h+='</div>';
+  return h;
+}
+
+function buildOECard(cid,num,label,hint,delay){
+  var ans=cardAnswers[cid];
+  var isOpen=cardAI[cid];
+  var hist=cardHistory[cid];
+  var d='animation-delay:'+(delay*0.05)+'s';
+
+  if(ans&&!isOpen){
+    var h='<div class="q-card answered" style="'+d+'">';
+    h+='<div class="q-card-main">';
+    h+='<div class="q-num"><span>'+num+'</span><div class="q-done-badge"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#3b6d11" stroke-width="1"/><path d="M3 5l1.5 1.5L7 3.5" stroke="#3b6d11" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg> Answered</div></div>';
+    h+='<div class="q-label">'+label+'</div>';
+    h+='</div>';
+    h+='<div class="answer-summary">';
+    h+='<div><div class="ans-val">'+ans+'</div>';
+    if(hist&&hist.length>0){h+='<div class="ans-ai-peek">'+hist[hist.length-1].text.substring(0,80)+'…<span class="peek-icon" onclick="openCardAI(\''+cid+'\')">&#x25C8; view chat</span></div>';}
+    h+='</div>';
+    h+='<div class="chip ai-chip" onclick="openCardAI(\''+cid+'\')" style="font-size:11px;padding:4px 10px">&#x25C8; AI</div>';
+    h+='</div>';
+    h+='</div>';
+    return h;
+  }
+
+  var h='<div class="q-card'+(ans?' answered':'')+'" style="'+d+'" id="card-'+cid+'">';
+  h+='<div class="q-card-main">';
+  h+='<div class="q-num">'+num+'</div>';
+  h+='<div class="q-label">'+label+'</div>';
+  h+='<div class="q-hint">'+hint+'</div>';
+  h+='<textarea class="oe-inp" rows="2" id="inp-'+cid+'" placeholder="Type your answer…" oninput="typeOE(\''+cid+'\',this.value)">'+ans+'</textarea>';
+  h+='<div class="oe-actions">';
+  h+='<button class="oe-confirm primary" onclick="confirmOE(\''+cid+'\')">Confirm answer</button>';
+  h+='<div class="chip ai-chip'+(isOpen?' open':'')+'" onclick="toggleCardAI(\''+cid+'\')" style="font-size:12px" id="aichip-'+cid+'">&#x25C8; Ask AI</div>';
+  h+='</div>';
+  h+='</div>';
+  if(isOpen){h+=buildCardAIPanel(cid);}
+  h+='</div>';
+  return h;
+}
+
+function buildCardAIPanel(cid){
+  var d=CARD_AI_DATA[cid];
+  var hist=cardHistory[cid]||[];
+  var h='<div class="card-ai" id="cai-'+cid+'">';
+  h+='<div class="card-ai-head"><div style="width:16px;height:16px;border-radius:3px;background:#185fa5;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="9" height="9" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="white" stroke-width="1"/><path d="M5 3v2.5l1.5 1" stroke="white" stroke-width="1" stroke-linecap="round"/></svg></div><div class="card-ai-label">AI Advisor — '+CARD_AI_DATA[cid]?CARD_AI_DATA[cid].summary.split(' ').slice(0,4).join(' ')+'…':'this question'+'</div><button class="card-ai-close" onclick="closeCardAI(\''+cid+'\')">&#xd7;</button></div>';
+  h+='<div class="card-ai-summary">'+d.summary+'</div>';
+  h+='<div class="card-ai-msgs" id="cmsgs-'+cid+'">';
+  if(hist.length===0){h+='<div class="cam-ai">How can I help you with this? Try one of the suggested questions below or ask anything.</div>';}
+  else{hist.forEach(function(m){h+='<div class="'+(m.role==='user'?'cam-user':'cam-ai')+'">'+m.text+'</div>';});}
+  h+='</div>';
+  h+='<div class="card-ai-suggestions" id="csug-'+cid+'">';
+  d.suggestions.forEach(function(s){h+='<div class="sug-chip" onclick="cardSugAsk(\''+cid+'\',\''+s.replace(/'/g,"\\'")+'\')">'+s+'</div>';});
+  h+='</div>';
+  h+='<div class="card-ai-input"><input class="cai-inp" id="cinp-'+cid+'" placeholder="Ask about this question…" onkeydown="if(event.key===\'Enter\')sendCardAI(\''+cid+'\')"/><button class="cai-send" onclick="sendCardAI(\''+cid+'\')">&#x2191;</button></div>';
+  h+='</div>';
+  return h;
+}
+
+function restoreCardAI(){
+  Object.keys(cardAI).forEach(function(cid){
+    if(cardAI[cid]&&!cardAnswers[cid]){
+      var el=document.getElementById('card-'+cid);
+      if(el&&!el.querySelector('.card-ai')){el.insertAdjacentHTML('beforeend',buildCardAIPanel(cid));}
+    }
+  });
+}
+
+function toggleCardAI(cid){
+  cardAI[cid]=!cardAI[cid];
+  renderContent();
+  setTimeout(function(){var el=document.getElementById('cmsgs-'+cid);if(el)el.scrollTop=el.scrollHeight;},50);
+}
+
+function openCardAI(cid){cardAI[cid]=true;renderContent();setTimeout(function(){var el=document.getElementById('cmsgs-'+cid);if(el)el.scrollTop=el.scrollHeight;},50);}
+function closeCardAI(cid){cardAI[cid]=false;renderContent();}
+
+function cardSugAsk(cid,q){
+  if(!cardHistory[cid])cardHistory[cid]=[];
+  cardHistory[cid].push({role:'user',text:q});
+  var msgs=document.getElementById('cmsgs-'+cid);
+  if(msgs){var um=document.createElement('div');um.className='cam-user';um.textContent=q;msgs.appendChild(um);
+    var ty=document.createElement('div');ty.className='cam-typing';ty.innerHTML='<div class="tdot"></div><div class="tdot"></div><div class="tdot"></div>';msgs.appendChild(ty);msgs.scrollTop=msgs.scrollHeight;
+    setTimeout(function(){ty.remove();var r=getCardAI(cid,q);cardHistory[cid].push({role:'assistant',text:r});var am=document.createElement('div');am.className='cam-ai';am.textContent=r;msgs.appendChild(am);msgs.scrollTop=msgs.scrollHeight;},500);
+  }
+  var sug=document.getElementById('csug-'+cid);if(sug)sug.style.display='none';
+}
+
+function sendCardAI(cid){
+  var inp=document.getElementById('cinp-'+cid);if(!inp)return;
+  var q=inp.value.trim();if(!q)return;
+  inp.value='';
+  cardSugAsk(cid,q);
+}
+
+function pickMC(cid,val){
+  cardAnswers[cid]=val;
+  cardAI[cid]=false;
+  updateCircle();
+  renderContent();
+  var pp=document.getElementById('ppill');if(pp)pp.textContent=countAns()+'/4 answered';
+  var cb=document.getElementById('cont-btn');if(cb)cb.disabled=(countAns()<4);
+}
+
+var oeTemp={};
+function typeOE(cid,val){oeTemp[cid]=val;}
+function confirmOE(cid){
+  var v=oeTemp[cid]||(document.getElementById('inp-'+cid)||{}).value||'';
+  if(!v.trim())return;
+  cardAnswers[cid]=v;cardAI[cid]=false;
+  updateCircle();renderContent();
+  var pp=document.getElementById('ppill');if(pp)pp.textContent=countAns()+'/4 answered';
+  var cb=document.getElementById('cont-btn');if(cb)cb.disabled=(countAns()<4);
+}
+
+function toggleGlobalAI(){
+  gaiOpen=!gaiOpen;
+  var panel=document.getElementById('global-ai');
+  var btn=document.getElementById('gai-btn');
+  panel.classList.toggle('open',gaiOpen);
+  btn.classList.toggle('active',gaiOpen);
+  btn.innerHTML=gaiOpen
+    ?'<svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Close'
+    :'<svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M7 4.5v2.5l1.5 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> AI Advisor';
+}
+
+function gaiMsg(role,text){
+  var msgs=document.getElementById('gai-msgs');if(!msgs)return;
+  if(role==='assistant'){
+    var ty=document.createElement('div');ty.className='gai-typing';ty.innerHTML='<div class="tdot" style="background:var(--color-text-tertiary)"></div><div class="tdot" style="background:var(--color-text-tertiary)"></div><div class="tdot" style="background:var(--color-text-tertiary)"></div>';msgs.appendChild(ty);msgs.scrollTop=msgs.scrollHeight;
+    setTimeout(function(){ty.remove();var m=document.createElement('div');m.className='gai-msg-ai';m.textContent=text;msgs.appendChild(m);msgs.scrollTop=msgs.scrollHeight;},500);
+  } else {
+    var m=document.createElement('div');m.className='gai-msg-user';m.textContent=text;msgs.appendChild(m);msgs.scrollTop=msgs.scrollHeight;
+  }
+}
+
+function sendGAI(){var inp=document.getElementById('gai-inp');var q=inp.value.trim();if(!q)return;gaiMsg('user',q);inp.value='';setTimeout(function(){gaiMsg('assistant',getGAI(q));},50);}
+function gaiQuick(q){if(!gaiOpen)toggleGlobalAI();setTimeout(function(){gaiMsg('user',q);setTimeout(function(){gaiMsg('assistant',getGAI(q));},50);},gaiOpen?0:280);}
+
+function setNav(el){document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});el.classList.add('active');}
+
+buildTabs();
+renderContent();
+updateCircle();
+` + '</' + 'script>';
+
+    var head = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>' + cssVars + '</style></head><body style="margin:0;padding:20px;background:#f8f9fa;display:flex;justify-content:center;font-family:var(--font-sans)">';
+    var tail = '</body></html>';
+
+    document.getElementById('proto-frame').srcdoc = head + proto + tail;
+  </script>
+</SimpleLayout>

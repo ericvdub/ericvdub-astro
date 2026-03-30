@@ -330,3 +330,29 @@ section {
   }
 }
 
+/* ── Simple page overrides (normal scrolling for non-fullpage pages) ── */
+html[data-simple-page],
+html[data-simple-page] body {
+  overflow: auto;
+  height: auto;
+}
+
+html[data-simple-page] section {
+  height: auto;
+  min-height: auto;
+  overflow: visible;
+}
+
+/* ── Form validation styling ── */
+.field-error input,
+.field-error textarea,
+.field-error select {
+  border-color: #ef4444 !important;
+}
+
+.field-error-msg {
+  color: #f87171;
+  font-size: 0.75rem;
+  margin-top: 0.375rem;
+}
+

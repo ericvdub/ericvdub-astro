@@ -1,0 +1,257 @@
+---
+import SimpleLayout from "../layouts/SimpleLayout.astro";
+
+const shareEmail = "eric@ericvdub.com";
+---
+
+<SimpleLayout title="Next Steps | Eric Vdub" description="Steps to prepare for your new website build.">
+  <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mb-12 text-center">
+      <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-widest text-accent">Next Steps</span>
+      <h1 class="mb-4 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">Preparing for Your New Website</h1>
+      <p class="mx-auto max-w-xl text-text-secondary">
+        Here's everything you need to do to get started. Complete these steps at your own pace — I'll follow up if I need anything else.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+
+      <!-- Step 1: Photos -->
+      <div id="photos" class="rounded-2xl border border-white/5 bg-surface p-6 sm:p-8 scroll-mt-24">
+        <div class="mb-4 flex items-start gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-space-900 text-lg font-bold">1</span>
+          <div>
+            <h2 class="text-xl font-bold">Share Your Photos</h2>
+            <p class="mt-1 text-sm text-text-secondary">High-quality photos make a huge difference. Here's how to share them.</p>
+          </div>
+        </div>
+
+        <details class="group mt-4">
+          <summary class="cursor-pointer text-sm font-medium text-accent hover:text-accent-light transition-colors">
+            Google Drive (recommended)
+          </summary>
+          <div class="mt-3 space-y-3 pl-4 border-l border-white/10 text-sm text-text-secondary">
+            <ol class="list-decimal list-inside space-y-2">
+              <li>Create a folder named <strong class="text-text-primary">"[Your Business Name] - Website Photos"</strong></li>
+              <li>Create sub-folders: <strong class="text-text-primary">Logo</strong>, <strong class="text-text-primary">About / Team</strong>, <strong class="text-text-primary">Gallery / Portfolio</strong>, <strong class="text-text-primary">Hero / Banner</strong></li>
+              <li>Upload your photos into the appropriate folders</li>
+              <li>Right-click the main folder &rarr; <strong class="text-text-primary">Share</strong></li>
+              <li>Enter <strong class="text-text-primary">{shareEmail}</strong> &rarr; set role to <strong class="text-text-primary">Editor</strong> &rarr; click <strong class="text-text-primary">Share</strong></li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="group mt-3">
+          <summary class="cursor-pointer text-sm font-medium text-accent hover:text-accent-light transition-colors">
+            Alternatives (Dropbox, WeTransfer, iCloud)
+          </summary>
+          <div class="mt-3 space-y-2 pl-4 border-l border-white/10 text-sm text-text-secondary">
+            <p><strong class="text-text-primary">Dropbox:</strong> Create a shared folder and share the link with <strong class="text-text-primary">{shareEmail}</strong></p>
+            <p><strong class="text-text-primary">WeTransfer:</strong> Great for large batches &mdash; send to <strong class="text-text-primary">{shareEmail}</strong></p>
+            <p><strong class="text-text-primary">iCloud:</strong> Create a shared album and invite <strong class="text-text-primary">{shareEmail}</strong></p>
+          </div>
+        </details>
+
+        <details class="group mt-3">
+          <summary class="cursor-pointer text-sm font-medium text-accent hover:text-accent-light transition-colors">
+            Photo tips
+          </summary>
+          <div class="mt-3 pl-4 border-l border-white/10 text-sm text-text-secondary">
+            <ul class="list-disc list-inside space-y-1">
+              <li>Use the highest resolution available</li>
+              <li>Landscape orientation works best for banners and hero images</li>
+              <li>Good lighting makes a big difference &mdash; natural light is ideal</li>
+              <li>Include a variety: team photos, workspace, products, action shots</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <!-- Step 2: Google Business Profile -->
+      <div class="rounded-2xl border border-white/5 bg-surface p-6 sm:p-8">
+        <div class="mb-4 flex items-start gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-space-900 text-lg font-bold">2</span>
+          <div>
+            <h2 class="text-xl font-bold">Share Google Business Profile Access</h2>
+            <p class="mt-1 text-sm text-text-secondary">This lets me optimize your listing and ensure consistency with your new website.</p>
+          </div>
+        </div>
+
+        <details class="group mt-4">
+          <summary class="cursor-pointer text-sm font-medium text-accent hover:text-accent-light transition-colors">
+            How to add me as a manager
+          </summary>
+          <div class="mt-3 space-y-3 pl-4 border-l border-white/10 text-sm text-text-secondary">
+            <ol class="list-decimal list-inside space-y-2">
+              <li>Go to <strong class="text-text-primary">business.google.com</strong></li>
+              <li>Select your business</li>
+              <li>Click the three-dot menu &rarr; <strong class="text-text-primary">Business Profile settings</strong> &rarr; <strong class="text-text-primary">Managers</strong></li>
+              <li>Click <strong class="text-text-primary">Add</strong> (+ icon)</li>
+              <li>Enter <strong class="text-text-primary">{shareEmail}</strong></li>
+              <li>Select the <strong class="text-text-primary">Manager</strong> role</li>
+              <li>Click <strong class="text-text-primary">Invite</strong></li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="group mt-3">
+          <summary class="cursor-pointer text-sm font-medium text-accent hover:text-accent-light transition-colors">
+            Don't have a Google Business Profile?
+          </summary>
+          <div class="mt-3 pl-4 border-l border-white/10 text-sm text-text-secondary">
+            <p>No worries! I can help you set one up. It's free and helps your business show up in Google Search and Maps. Visit <strong class="text-text-primary">business.google.com</strong> to get started, or let me know and we'll handle it together.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- Step 3: Domain Access -->
+      <div class="rounded-2xl border border-white/5 bg-surface p-6 sm:p-8">
+        <div class="mb-4 flex items-start gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-space-900 text-lg font-bold">3</span>
+          <div>
+            <h2 class="text-xl font-bold">Share Domain Access</h2>
+            <p class="mt-1 text-sm text-text-secondary">I'll need access to point your domain to the new website.</p>
+          </div>
+        </div>
+
+        <details class="group mt-4">
+          <summary class="cursor-pointer text-sm font-medium text-accent hover:text-accent-light transition-colors">
+            GoDaddy
+          </summary>
+          <div class="mt-3 pl-4 border-l border-white/10 text-sm text-text-secondary">
+            <ol class="list-decimal list-inside space-y-2">
+              <li>Go to <strong class="text-text-primary">My Products</strong> &rarr; <strong class="text-text-primary">Domains</strong></li>
+              <li>Select your domain</li>
+              <li>Click <strong class="text-text-primary">People</strong></li>
+              <li>Click <strong class="text-text-primary">Invite to Access</strong></li>
+              <li>Enter <strong class="text-text-primary">{shareEmail}</strong> as a <strong class="text-text-primary">Delegate</strong></li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="group mt-3">
+          <summary class="cursor-pointer text-sm font-medium text-accent hover:text-accent-light transition-colors">
+            Namecheap
+          </summary>
+          <div class="mt-3 pl-4 border-l border-white/10 text-sm text-text-secondary">
+            <ol class="list-decimal list-inside space-y-2">
+              <li>Go to <strong class="text-text-primary">Domain List</strong></li>
+              <li>Click <strong class="text-text-primary">Manage</strong> next to your domain</li>
+              <li>Go to <strong class="text-text-primary">Sharing & Transfer</strong></li>
+              <li>Click <strong class="text-text-primary">Add Collaborator</strong> and enter <strong class="text-text-primary">{shareEmail}</strong></li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="group mt-3">
+          <summary class="cursor-pointer text-sm font-medium text-accent hover:text-accent-light transition-colors">
+            Cloudflare
+          </summary>
+          <div class="mt-3 pl-4 border-l border-white/10 text-sm text-text-secondary">
+            <ol class="list-decimal list-inside space-y-2">
+              <li>Go to your <strong class="text-text-primary">Dashboard</strong> and select the domain</li>
+              <li>Click <strong class="text-text-primary">Manage Account</strong> &rarr; <strong class="text-text-primary">Members</strong></li>
+              <li>Click <strong class="text-text-primary">Invite</strong></li>
+              <li>Enter <strong class="text-text-primary">{shareEmail}</strong> with DNS edit permission</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="group mt-3">
+          <summary class="cursor-pointer text-sm font-medium text-accent hover:text-accent-light transition-colors">
+            Google Domains / Squarespace
+          </summary>
+          <div class="mt-3 pl-4 border-l border-white/10 text-sm text-text-secondary">
+            <ol class="list-decimal list-inside space-y-2">
+              <li>Go to <strong class="text-text-primary">Domains</strong> and select your domain</li>
+              <li>Go to <strong class="text-text-primary">Settings</strong> &rarr; <strong class="text-text-primary">Permissions</strong></li>
+              <li>Click <strong class="text-text-primary">Add user</strong> and enter <strong class="text-text-primary">{shareEmail}</strong></li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="group mt-3">
+          <summary class="cursor-pointer text-sm font-medium text-accent hover:text-accent-light transition-colors">
+            Not sure / Other registrar
+          </summary>
+          <div class="mt-3 pl-4 border-l border-white/10 text-sm text-text-secondary">
+            <p>No problem! Send me the name of your registrar and I'll provide specific instructions.</p>
+          </div>
+        </details>
+
+        <details class="group mt-3">
+          <summary class="cursor-pointer text-sm font-medium text-accent hover:text-accent-light transition-colors">
+            Don't have a domain yet?
+          </summary>
+          <div class="mt-3 pl-4 border-l border-white/10 text-sm text-text-secondary">
+            <p>I can help you register one! We'll find a great domain name for your business together.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- Step 4: Content -->
+      <div class="rounded-2xl border border-white/5 bg-surface p-6 sm:p-8">
+        <div class="mb-4 flex items-start gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-space-900 text-lg font-bold">4</span>
+          <div>
+            <h2 class="text-xl font-bold">Prepare Your Content</h2>
+            <p class="mt-1 text-sm text-text-secondary">Great content is the backbone of a great website. Here's what to prepare.</p>
+          </div>
+        </div>
+
+        <div class="mt-4 space-y-3 text-sm text-text-secondary">
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong class="text-text-primary">Company story</strong> &mdash; 2&ndash;4 paragraphs about your history, mission, and what makes you unique</li>
+            <li><strong class="text-text-primary">Customer testimonials</strong> &mdash; 3&ndash;5 testimonials with customer name, location, and a few sentences</li>
+            <li><strong class="text-text-primary">FAQ</strong> &mdash; Common questions your customers ask you</li>
+            <li><strong class="text-text-primary">Services / Products</strong> &mdash; A list with brief descriptions of each</li>
+          </ul>
+          <p class="mt-4 rounded-xl border border-accent/20 bg-accent/5 px-4 py-3 text-accent">
+            Tip: If you're not sure what to write, don't worry &mdash; I can help draft content based on our conversation.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 5: Brand Assets -->
+      <div class="rounded-2xl border border-white/5 bg-surface p-6 sm:p-8">
+        <div class="mb-4 flex items-start gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-space-900 text-lg font-bold">5</span>
+          <div>
+            <h2 class="text-xl font-bold">Brand Assets Checklist</h2>
+            <p class="mt-1 text-sm text-text-secondary">Gather these items so your website matches your brand perfectly.</p>
+          </div>
+        </div>
+
+        <div class="mt-4 space-y-3 text-sm text-text-secondary">
+          <label class="flex items-start gap-3 cursor-default">
+            <input type="checkbox" disabled class="mt-0.5 h-4 w-4 rounded border-white/20 bg-white/5 accent-accent" />
+            <span><strong class="text-text-primary">Logo file</strong> &mdash; PNG with transparent background, SVG if available</span>
+          </label>
+          <label class="flex items-start gap-3 cursor-default">
+            <input type="checkbox" disabled class="mt-0.5 h-4 w-4 rounded border-white/20 bg-white/5 accent-accent" />
+            <span><strong class="text-text-primary">Primary brand color</strong> &mdash; hex code or "use our logo colors"</span>
+          </label>
+          <label class="flex items-start gap-3 cursor-default">
+            <input type="checkbox" disabled class="mt-0.5 h-4 w-4 rounded border-white/20 bg-white/5 accent-accent" />
+            <span><strong class="text-text-primary">Brand guidelines</strong> &mdash; any existing style guides or preferences</span>
+          </label>
+          <label class="flex items-start gap-3 cursor-default">
+            <input type="checkbox" disabled class="mt-0.5 h-4 w-4 rounded border-white/20 bg-white/5 accent-accent" />
+            <span><strong class="text-text-primary">Social media URLs</strong> &mdash; Facebook, Instagram, etc.</span>
+          </label>
+          <label class="flex items-start gap-3 cursor-default">
+            <input type="checkbox" disabled class="mt-0.5 h-4 w-4 rounded border-white/20 bg-white/5 accent-accent" />
+            <span><strong class="text-text-primary">Fonts</strong> &mdash; any specific fonts used in your branding</span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="mt-12 text-center text-sm text-text-secondary">
+      <p>Questions? Email me at <a href={`mailto:${shareEmail}`} class="text-accent hover:text-accent-light transition-colors">{shareEmail}</a></p>
+      <a href="/" class="mt-3 inline-block text-accent hover:text-accent-light transition-colors">&larr; Back to home</a>
+    </div>
+  </div>
+</SimpleLayout>
