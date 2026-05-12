@@ -1,0 +1,555 @@
+---
+import SimpleLayout from "../layouts/SimpleLayout.astro";
+import { resumeData } from "../data/resume";
+
+const starters = [
+  { icon: "🚀", label: "Why should I hire Eric?" },
+  { icon: "💻", label: "What's Eric's technical stack?" },
+  { icon: "🔨", label: "Tell me about projects Eric has built" },
+  { icon: "⭐", label: "What makes Eric stand out from other devs?" },
+  { icon: "🤝", label: "Is Eric available for freelance work?" },
+  { icon: "🎯", label: "What's Eric's development philosophy?" },
+];
+
+const skillCategories = [
+  { label: "Frontend", skills: resumeData.skills.frontend },
+  { label: "Backend", skills: resumeData.skills.backend },
+  { label: "Tools", skills: resumeData.skills.tools },
+  { label: "Specialties", skills: resumeData.skills.specialties },
+];
+
+type ColorKey = "accent" | "emerald" | "amber";
+const experienceColors: Record<ColorKey, { gradient: string; badge: string; icon: string }> = {
+  accent:  { gradient: "from-accent/20 via-amber-600/15 to-orange-500/10", badge: "bg-accent/10 text-accent",   icon: "text-accent" },
+  emerald: { gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20", badge: "bg-emerald-500/10 text-emerald-400", icon: "text-emerald-400" },
+  amber:   { gradient: "from-amber-500/20 via-orange-500/20 to-red-500/20",  badge: "bg-amber-500/10 text-amber-400",   icon: "text-amber-400" },
+};
+---
+
+<SimpleLayout
+  title="Eric Vdub | Resume — Get to Know Eric"
+  description="Eric Van Wagoner — Full-Stack Developer & Creative Builder. Explore his experience and ask the AI assistant anything."
+>
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <section class="relative flex min-h-[70vh] items-center px-4 py-20 sm:px-6 sm:py-28">
+    <div class="pointer-events-none absolute top-1/3 -left-40 h-80 w-80 rounded-full bg-accent/5 blur-[120px]"></div>
+    <div class="pointer-events-none absolute bottom-1/4 -right-20 h-56 w-56 rounded-full bg-cyan-500/5 blur-[100px]"></div>
+
+    <div class="relative z-10 mx-auto max-w-4xl w-full text-center">
+      <div class="reveal-item mb-4 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5">
+        <span class="h-2 w-2 rounded-full bg-accent animate-pulse"></span>
+        <span class="text-sm font-medium text-accent">Available for Work</span>
+      </div>
+
+      <h1 class="reveal-item mb-4 text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
+        Get to Know
+        <span class="block text-accent">Eric</span>
+      </h1>
+
+      <p class="reveal-item mx-auto mb-8 max-w-xl text-base text-text-secondary sm:text-lg">
+        {resumeData.tagline}
+      </p>
+
+      <div class="reveal-item flex flex-wrap justify-center gap-4 text-sm text-text-secondary">
+        <div class="flex items-center gap-2 rounded-full border border-white/5 bg-surface px-4 py-2">
+          <span class="text-accent">⚡</span>
+          <span>10+ years coding</span>
+        </div>
+        <div class="flex items-center gap-2 rounded-full border border-white/5 bg-surface px-4 py-2">
+          <span class="text-accent">🏍️</span>
+          <span>14+ years riding</span>
+        </div>
+        <div class="flex items-center gap-2 rounded-full border border-white/5 bg-surface px-4 py-2">
+          <span class="text-accent">📦</span>
+          <span>3 shipped products</span>
+        </div>
+        <div class="flex items-center gap-2 rounded-full border border-white/5 bg-surface px-4 py-2">
+          <span class="text-accent">🥋</span>
+          <span>BJJ practitioner</span>
+        </div>
+      </div>
+
+      <div class="reveal-item mt-10 flex flex-wrap justify-center gap-3">
+        <a
+          href="mailto:eric@ericvdub.com"
+          class="btn-shimmer inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-space-900 shadow-[0_0_20px_rgba(224,138,30,0.3)] transition-all hover:shadow-[0_0_30px_rgba(224,138,30,0.5)] hover:scale-105"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Hire Eric
+        </a>
+        <a
+          href="#chat"
+          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-surface px-6 py-3 text-sm font-semibold text-text-primary transition-all hover:border-accent/30 hover:bg-surface-hover"
+        >
+          <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+          Ask AI About Eric
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Experience ─────────────────────────────────────────── -->
+  <section class="relative px-4 py-16 sm:px-6 sm:py-20">
+    <div class="divider-line pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[1px] w-3/4 bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
+    <div class="pointer-events-none absolute top-1/4 -right-20 h-64 w-64 rounded-full bg-accent/5 blur-[100px]"></div>
+
+    <div class="relative z-10 mx-auto max-w-6xl w-full">
+      <div class="stagger-card mb-10 text-center sm:mb-14">
+        <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-widest text-accent">Experience</span>
+        <h2 class="text-3xl font-extrabold tracking-tight sm:text-5xl">What Eric Has Built</h2>
+      </div>
+
+      <div class="grid gap-4 sm:gap-6 md:grid-cols-3">
+        {resumeData.experience.map((exp) => {
+          const c = experienceColors[(exp.color as ColorKey)] ?? experienceColors.accent;
+          return (
+            <div class="stagger-card card-glow group relative overflow-hidden rounded-2xl border border-white/5 bg-surface transition-all duration-500 hover:bg-surface-hover hover:-translate-y-1">
+              <div class={`h-32 sm:h-44 bg-gradient-to-br ${c.gradient} flex items-center justify-center`}>
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm transition-transform duration-500 group-hover:scale-110">
+                  <svg class={`h-8 w-8 ${c.icon}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                  </svg>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="mb-2 flex items-center gap-2">
+                  <span class={`rounded-full px-3 py-0.5 text-xs font-medium ${c.badge}`}>{exp.type}</span>
+                  {exp.status && <span class="rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-medium text-green-400">{exp.status}</span>}
+                </div>
+                <h3 class="mb-1 text-xl font-bold">{exp.title}</h3>
+                {exp.role && <p class="mb-2 text-xs font-medium text-text-secondary">{exp.role}</p>}
+                <p class="mb-4 text-sm leading-relaxed text-text-secondary">{exp.description}</p>
+                <div class="mb-4 flex flex-wrap gap-2">
+                  {exp.tech.map((t) => (
+                    <span class="rounded-full border border-white/10 px-3 py-1 text-xs text-text-secondary">{t}</span>
+                  ))}
+                </div>
+                <ul class="space-y-1.5">
+                  {exp.highlights.slice(0, 3).map((h) => (
+                    <li class="flex items-start gap-2 text-xs text-text-secondary">
+                      <span class="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent/60"></span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ─────────────────────────────────────────────── -->
+  <section class="relative px-4 py-16 sm:px-6 sm:py-20">
+    <div class="divider-line pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[1px] w-3/4 bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
+    <div class="pointer-events-none absolute -left-40 top-1/2 h-96 w-96 rounded-full bg-cyan-500/5 blur-[120px]"></div>
+
+    <div class="relative z-10 mx-auto max-w-6xl w-full">
+      <div class="stagger-card mb-10 text-center sm:mb-14">
+        <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-widest text-accent">Skills</span>
+        <h2 class="text-3xl font-extrabold tracking-tight sm:text-5xl">Technical Arsenal</h2>
+      </div>
+
+      <div class="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {skillCategories.map((cat) => (
+          <div class="stagger-card rounded-2xl border border-white/5 bg-surface p-6 transition-all duration-300 hover:bg-surface-hover">
+            <h3 class="mb-4 text-xs font-bold uppercase tracking-widest text-accent">{cat.label}</h3>
+            <div class="flex flex-wrap gap-2">
+              {cat.skills.map((skill) => (
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-text-primary transition-colors hover:border-accent/30 hover:text-accent">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why Hire Eric ──────────────────────────────────────── -->
+  <section class="relative px-4 py-16 sm:px-6 sm:py-20">
+    <div class="divider-line pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[1px] w-3/4 bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
+    <div class="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-96 w-[600px] rounded-full bg-accent/5 blur-[150px]"></div>
+
+    <div class="relative z-10 mx-auto max-w-6xl w-full">
+      <div class="stagger-card mb-10 text-center sm:mb-14">
+        <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-widest text-accent">Value Prop</span>
+        <h2 class="text-3xl font-extrabold tracking-tight sm:text-5xl">Why Hire Eric?</h2>
+        <p class="mx-auto mt-4 max-w-xl text-sm text-text-secondary sm:text-base">
+          Six reasons Eric brings more to the table than a typical developer.
+        </p>
+      </div>
+
+      <div class="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {resumeData.whyHire.map((item) => (
+          <div class="stagger-card card-glow group rounded-2xl border border-white/5 bg-surface p-6 transition-all duration-300 hover:bg-surface-hover hover:-translate-y-0.5">
+            <div class="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-2xl transition-transform duration-300 group-hover:scale-110">
+              {item.icon}
+            </div>
+            <h3 class="mb-2 font-bold text-text-primary">{item.title}</h3>
+            <p class="text-sm leading-relaxed text-text-secondary">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AI Chat ─────────────────────────────────────────────── -->
+  <section id="chat" class="relative px-4 py-16 sm:px-6 sm:py-24">
+    <div class="divider-line pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[1px] w-3/4 bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
+    <div class="pointer-events-none absolute top-0 right-0 h-80 w-80 rounded-full bg-accent/5 blur-[120px]"></div>
+    <div class="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full bg-cyan-500/5 blur-[100px]"></div>
+
+    <div class="relative z-10 mx-auto max-w-3xl w-full">
+      <div class="stagger-card mb-8 text-center">
+        <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-widest text-accent">AI Assistant</span>
+        <h2 class="mb-3 text-3xl font-extrabold tracking-tight sm:text-5xl">Ask Me Anything</h2>
+        <p class="mx-auto max-w-lg text-sm text-text-secondary sm:text-base">
+          Chat with Eric's AI assistant. Ask about his background, skills, availability — anything.
+        </p>
+      </div>
+
+      <div class="stagger-card rounded-2xl border border-white/5 bg-surface overflow-hidden">
+        <!-- Chat header -->
+        <div class="flex items-center gap-3 border-b border-white/5 bg-white/3 px-5 py-4">
+          <div class="relative flex h-9 w-9 items-center justify-center rounded-full bg-accent/20">
+            <span class="text-sm font-bold text-accent">AI</span>
+            <span class="absolute -top-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-space-900 bg-green-400"></span>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-text-primary">Eric's Assistant</p>
+            <p class="text-xs text-text-secondary">Powered by Claude AI · Always online</p>
+          </div>
+        </div>
+
+        <!-- Messages area -->
+        <div
+          id="chat-messages"
+          class="flex flex-col gap-4 overflow-y-auto px-5 py-5"
+          style="min-height: 280px; max-height: 440px;"
+        >
+          <!-- Welcome message -->
+          <div class="flex items-start gap-3">
+            <div class="shrink-0 flex h-7 w-7 items-center justify-center rounded-full bg-accent/20">
+              <span class="text-xs font-bold text-accent">AI</span>
+            </div>
+            <div class="chat-bubble-ai max-w-prose rounded-2xl rounded-tl-sm border border-white/5 bg-white/5 px-4 py-3 text-sm leading-relaxed text-text-primary">
+              👋 Hi! I'm Eric's AI assistant. Ask me anything about his background, skills, projects, or why he'd be a great addition to your team. I'm here to help you get to know Eric better!
+            </div>
+          </div>
+        </div>
+
+        <!-- Starter prompts -->
+        <div id="starters-container" class="border-t border-white/5 px-5 py-3">
+          <p class="mb-2 text-xs font-medium text-text-secondary">Suggested questions:</p>
+          <div class="flex flex-wrap gap-2" id="starters">
+            {starters.map((s) => (
+              <button
+                data-starter={s.label}
+                class="starter-btn flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-text-secondary transition-all hover:border-accent/30 hover:bg-accent/10 hover:text-accent"
+              >
+                <span>{s.icon}</span>
+                <span>{s.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Input area -->
+        <div class="border-t border-white/5 px-5 py-4">
+          <form id="chat-form" class="flex items-end gap-3">
+            <textarea
+              id="chat-input"
+              rows="1"
+              placeholder="Ask something about Eric..."
+              class="flex-1 resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-text-primary placeholder-text-secondary/50 outline-none transition-all focus:border-accent/40 focus:ring-1 focus:ring-accent/20"
+              style="max-height: 120px;"
+            ></textarea>
+            <button
+              id="send-btn"
+              type="submit"
+              class="shrink-0 flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-space-900 transition-all hover:scale-105 hover:shadow-[0_0_16px_rgba(224,138,30,0.4)] disabled:opacity-40 disabled:scale-100"
+            >
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.269 20.876L5.999 12zm0 0h7.5" />
+              </svg>
+            </button>
+          </form>
+          <p class="mt-2 text-center text-xs text-text-secondary/40">
+            Responses are AI-generated based on Eric's real background.
+            <a href="mailto:eric@ericvdub.com" class="text-accent/60 hover:text-accent transition-colors">Contact Eric directly →</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Passions ────────────────────────────────────────────── -->
+  <section class="relative px-4 py-16 sm:px-6 sm:py-20">
+    <div class="divider-line pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[1px] w-3/4 bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
+
+    <div class="relative z-10 mx-auto max-w-6xl w-full">
+      <div class="stagger-card mb-10 text-center">
+        <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-widest text-accent">Beyond Code</span>
+        <h2 class="text-3xl font-extrabold tracking-tight sm:text-5xl">What Drives Eric</h2>
+      </div>
+
+      <div class="grid gap-4 sm:gap-6 sm:grid-cols-3">
+        {resumeData.passions.map((p) => (
+          <div class="stagger-card card-glow group rounded-2xl border border-white/5 bg-surface p-8 text-center transition-all duration-300 hover:bg-surface-hover hover:-translate-y-1">
+            <div class="mb-4 text-4xl transition-transform duration-500 group-hover:scale-125">{p.emoji}</div>
+            <h3 class="mb-2 text-lg font-bold">{p.name}</h3>
+            <p class="text-sm leading-relaxed text-text-secondary">{p.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Footer ──────────────────────────────────────────── -->
+  <section class="relative px-4 py-20 sm:px-6 sm:py-28">
+    <div class="divider-line pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[1px] w-3/4 bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
+    <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
+      <div class="h-96 w-96 rounded-full bg-accent/5 blur-[150px]"></div>
+    </div>
+
+    <div class="relative z-10 mx-auto max-w-2xl w-full text-center">
+      <div class="stagger-card">
+        <h2 class="mb-4 text-3xl font-extrabold tracking-tight sm:text-5xl">Ready to Work Together?</h2>
+        <p class="mb-8 text-base text-text-secondary sm:text-lg">
+          Eric is currently available for new projects. Let's build something great.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="mailto:eric@ericvdub.com"
+            class="btn-shimmer inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-base font-semibold text-space-900 shadow-[0_0_30px_rgba(224,138,30,0.3)] transition-all hover:shadow-[0_0_50px_rgba(224,138,30,0.5)] hover:scale-105"
+          >
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            eric@ericvdub.com
+          </a>
+          <a
+            href="/#contact"
+            class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-surface px-8 py-4 text-base font-semibold text-text-primary transition-all hover:border-accent/30 hover:bg-surface-hover"
+          >
+            Contact Form →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</SimpleLayout>
+
+<script>
+  // ── Scroll-triggered animations ──────────────────────────────
+  function revealEl(el: HTMLElement) {
+    if (el.classList.contains("stagger-card")) {
+      const siblings = el.parentElement?.querySelectorAll(".stagger-card") ?? [];
+      const idx = Array.from(siblings).indexOf(el);
+      el.style.transitionDelay = `${idx * 70}ms`;
+      el.classList.add("card-visible");
+    } else if (el.classList.contains("divider-line")) {
+      el.classList.add("line-visible");
+    } else if (el.classList.contains("reveal-item")) {
+      el.classList.add("revealed");
+    }
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        revealEl(entry.target as HTMLElement);
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.05, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  const animEls = document.querySelectorAll<HTMLElement>(".stagger-card, .divider-line, .reveal-item");
+  animEls.forEach((el) => observer.observe(el));
+
+  // Fallback: reveal everything after 2s in case IntersectionObserver misfires
+  setTimeout(() => animEls.forEach((el) => revealEl(el)), 2000);
+
+  // ── Chat logic ──────────────────────────────────────────────
+  type Role = "user" | "assistant";
+  interface Message { role: Role; content: string }
+
+  const chatMessages = document.getElementById("chat-messages") as HTMLDivElement;
+  const chatForm = document.getElementById("chat-form") as HTMLFormElement;
+  const chatInput = document.getElementById("chat-input") as HTMLTextAreaElement;
+  const sendBtn = document.getElementById("send-btn") as HTMLButtonElement;
+  const startersContainer = document.getElementById("starters-container") as HTMLDivElement;
+
+  let history: Message[] = [];
+  let busy = false;
+
+  // Auto-resize textarea
+  chatInput.addEventListener("input", () => {
+    chatInput.style.height = "auto";
+    chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + "px";
+  });
+
+  // Enter to send (Shift+Enter for newline)
+  chatInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      chatForm.requestSubmit();
+    }
+  });
+
+  // Starter buttons
+  document.querySelectorAll<HTMLButtonElement>(".starter-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const text = btn.dataset.starter ?? "";
+      if (text) sendMessage(text);
+    });
+  });
+
+  chatForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const text = chatInput.value.trim();
+    if (text) sendMessage(text);
+  });
+
+  function escapeHtml(str: string): string {
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function renderMarkdown(text: string): string {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*(.*?)\*/g, "<em>$1</em>")
+      .replace(/`(.*?)`/g, '<code class="rounded bg-white/10 px-1 py-0.5 text-xs font-mono">$1</code>')
+      .replace(/^- (.+)$/gm, '<li class="ml-4 list-disc">$1</li>')
+      .replace(/(<li.*<\/li>\n?)+/g, '<ul class="space-y-1 my-1">$&</ul>')
+      .replace(/\n\n/g, '</p><p class="mt-2">')
+      .replace(/\n/g, "<br>");
+  }
+
+  function appendBubble(role: Role, html: string, id?: string): HTMLDivElement {
+    const wrapper = document.createElement("div");
+    wrapper.className = `flex items-start gap-3 ${role === "user" ? "flex-row-reverse" : ""}`;
+    if (id) wrapper.id = id;
+
+    const avatar = document.createElement("div");
+    avatar.className = `shrink-0 flex h-7 w-7 items-center justify-center rounded-full ${
+      role === "user" ? "bg-white/10" : "bg-accent/20"
+    }`;
+    avatar.innerHTML = `<span class="text-xs font-bold ${role === "user" ? "text-text-secondary" : "text-accent"}">${
+      role === "user" ? "You" : "AI"
+    }</span>`;
+
+    const bubble = document.createElement("div");
+    bubble.className =
+      role === "user"
+        ? "max-w-sm rounded-2xl rounded-tr-sm bg-accent/90 px-4 py-3 text-sm font-medium text-space-900 shadow-sm"
+        : "max-w-prose rounded-2xl rounded-tl-sm border border-white/5 bg-white/5 px-4 py-3 text-sm leading-relaxed text-text-primary";
+    bubble.innerHTML = html;
+
+    wrapper.appendChild(avatar);
+    wrapper.appendChild(bubble);
+    chatMessages.appendChild(wrapper);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return wrapper;
+  }
+
+  function showTyping(): string {
+    const id = `typing-${Date.now()}`;
+    appendBubble(
+      "assistant",
+      `<span class="flex gap-1 py-0.5">
+        <span class="h-1.5 w-1.5 rounded-full bg-accent/60 animate-bounce" style="animation-delay:0ms"></span>
+        <span class="h-1.5 w-1.5 rounded-full bg-accent/60 animate-bounce" style="animation-delay:160ms"></span>
+        <span class="h-1.5 w-1.5 rounded-full bg-accent/60 animate-bounce" style="animation-delay:320ms"></span>
+      </span>`,
+      id
+    );
+    return id;
+  }
+
+  async function sendMessage(text: string) {
+    if (busy || !text.trim()) return;
+    busy = true;
+    sendBtn.disabled = true;
+    chatInput.value = "";
+    chatInput.style.height = "auto";
+
+    // Hide starters after first message
+    startersContainer.style.display = "none";
+
+    appendBubble("user", escapeHtml(text));
+    const typingId = showTyping();
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, history: history.slice(-10) }),
+      });
+
+      const data = (await res.json()) as { response?: string; error?: string };
+
+      document.getElementById(typingId)?.remove();
+
+      if (data.error) {
+        appendBubble("assistant", `<span class="text-red-400">⚠️ ${escapeHtml(data.error)}</span>`);
+      } else {
+        const reply = data.response ?? "Sorry, I couldn't generate a response.";
+        appendBubble("assistant", renderMarkdown(reply));
+        history.push({ role: "user", content: text });
+        history.push({ role: "assistant", content: reply });
+      }
+    } catch {
+      document.getElementById(typingId)?.remove();
+      appendBubble("assistant", '<span class="text-red-400">⚠️ Network error. Please try again.</span>');
+    } finally {
+      busy = false;
+      sendBtn.disabled = false;
+      chatInput.focus();
+    }
+  }
+</script>
+
+<style>
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-item:nth-child(1) { transition-delay: 0ms; }
+  .reveal-item:nth-child(2) { transition-delay: 80ms; }
+  .reveal-item:nth-child(3) { transition-delay: 160ms; }
+  .reveal-item:nth-child(4) { transition-delay: 240ms; }
+  .reveal-item:nth-child(5) { transition-delay: 320ms; }
+
+  #chat-messages::-webkit-scrollbar {
+    width: 4px;
+  }
+  #chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(224, 138, 30, 0.3);
+    border-radius: 2px;
+  }
+</style>
