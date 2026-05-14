@@ -2,7 +2,7 @@ export const resumeData = {
   name: "Eric Van Wagoner",
   nickname: "ericvdub",
   title: "Full-Stack Developer & Creative Builder",
-  email: "eric@ericvdub.com",
+  email: "e@ericvdub.com",
   website: "ericvdub.com",
   tagline: "I build digital experiences and chase passions that keep me sharp.",
 
